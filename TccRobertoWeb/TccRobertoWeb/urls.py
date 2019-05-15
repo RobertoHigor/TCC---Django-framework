@@ -20,6 +20,8 @@ from monitoramento import views as registro_views
 
 urlpatterns = [
     path('', registro_views.RegistroListView.as_view(), name='inicio-registros'),
+    path('about/', registro_views.about, name='site-about'),  
+
     path('admin/', admin.site.urls),
 ]
 

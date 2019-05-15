@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'monitoramento.apps.MonitoramentoConfig',
+    'users.apps.UserConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -73,10 +75,39 @@ WSGI_APPLICATION = 'TccRobertoWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}"""
+
+
+#'ENGINE': 'django.db.backends.sqlite3',
+"""
+https://stackoverflow.com/questions/51146117/installing-mysqlclient-in-python-3-6-in-windows
+
+It has all the instructions. In short go to this site: https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient:
+
+There you will find mysqlclient‑1.3.13‑cp36‑cp36m‑win32.whl mysqlclient‑1.3.13‑cp36‑cp36m‑win_amd64.whl
+
+Download the correct file for your platform.
+
+Then use your downloaded wheels file with pip and your done:
+
+pip install c:\mysqlclient‑1.3.13‑cp36‑cp36m‑win_amd64.whl"""
+
+DATABASES = {
+    'default': {
+        #pip install pymysql
+        'ENGINE': 'django.db.backends.mysql',    
+        #Se quiser separar os dados: https://www.digitalocean.com/community/tutorials/how-to-create-a-django-app-and-connect-it-to-a-database ver arquivo my.cnf 
+        'NAME': 'djangobanco',
+        'USER': 'root',
+        'PASSWORD': '26793653',
+        'HOST': 'localhost',
+        'PORT': '3306',        
+        
     }
 }
 
@@ -118,3 +149,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+CRISPY_TEMPALTE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_URL = 'login'

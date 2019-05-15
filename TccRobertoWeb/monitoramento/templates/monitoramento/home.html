@@ -1,20 +1,37 @@
-{% extends "blog/base.html" %}
+{% extends "monitoramento/base.html" %}
 {% block content %}
 
-    {% for post in posts %}
-    <article class="media content-section">
-    <img class = "rounded-circle article-img" src="{{post.author.profile.image.url}}"/>
-        <div class="media-body">
-            <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-            <!-- Alterando para imprimir apenas o Mês, dia e ano. Os filtros estão na documentação-->
-            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-            </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
-        </div>
-    </article>
+    <!--<article class="media content-section">  -->
+    <!-- <div class="input-group mb-3">-->
+  
+    <form method="GET" action="{% url 'inicio-registros' %}" class="form-inline mb-3">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <input type="submit" class="btn btn-outline-info navbar-dark" value="Filtrar"/>
+    </form>    
+
+    <table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>  
+        <th scope="col">Nome</th>      
+        <th scope="col">Usuario</th>
+        <th scope="col">Sala Acessada</th>
+        <th scope="col">Data</th>
+        </tr>
+    </thead>
+
+    {% for registro in registros %}   
+    <tbody>
+        <tr>      
+        <th scope="row">{{registro.usuario.first_name}}</th>
+        <td>{{registro.usuario}}</td>
+        <td>{{registro.sala_acesso}}</td>
+        <td>{{registro.data_acesso}}</td>
+        </tr>    
+    </tbody>
     {% endfor %}
+
+    </table>
+    <!--</article>-->
 
     <!-- Paginação -->
     {% if is_paginated %}
