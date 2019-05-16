@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -71,42 +70,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'TccRobertoWeb.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-"""DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}"""
-
-
-#'ENGINE': 'django.db.backends.sqlite3',
-"""
-https://stackoverflow.com/questions/51146117/installing-mysqlclient-in-python-3-6-in-windows
-
-It has all the instructions. In short go to this site: https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient:
-
-There you will find mysqlclient‑1.3.13‑cp36‑cp36m‑win32.whl mysqlclient‑1.3.13‑cp36‑cp36m‑win_amd64.whl
-
-Download the correct file for your platform.
-
-Then use your downloaded wheels file with pip and your done:
-
-pip install c:\mysqlclient‑1.3.13‑cp36‑cp36m‑win_amd64.whl"""
-
 DATABASES = {
     'default': {
-        #pip install pymysql
-        'ENGINE': 'django.db.backends.mysql',    
+        #pip install psycopg2
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',    
         #Se quiser separar os dados: https://www.digitalocean.com/community/tutorials/how-to-create-a-django-app-and-connect-it-to-a-database ver arquivo my.cnf 
-        'NAME': 'djangobanco',
-        'USER': 'root',
+        'NAME': 'faeterj',
+        'USER': 'postgres',
         'PASSWORD': '26793653',
         'HOST': 'localhost',
-        'PORT': '3306',        
+        'PORT': '5432',        
         
     }
 }
@@ -137,7 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'pt-br'
 ADMIN_LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC-3'
+TIME_ZONE = 'America/Sao_Paulo'
+USE_TZ = True 
 
 USE_I18N = True
 
@@ -151,5 +128,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CRISPY_TEMPALTE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_REDIRECT_URL = 'inicio-registros'
 LOGIN_URL = 'login'
