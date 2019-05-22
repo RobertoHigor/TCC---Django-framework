@@ -4,8 +4,8 @@ Sistema WEB desenvolvido em Django para o cadastro de Usuários e senhas de Acess
 
 # Pré-requisitos
 
-pip install Django
-pip install dango-crispy-forms
+pip install django
+pip install django-crispy-forms
 pip install psycopg2
 
 # Instruções
