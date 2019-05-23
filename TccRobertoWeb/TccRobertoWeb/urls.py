@@ -16,12 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from monitoramento import views as registro_views
+#Imports do usuario
+from django.contrib.auth import views as auth_views
+from users import views as user_views
 
 
 urlpatterns = [
-    path('', registro_views.RegistroListView.as_view(), name='inicio-registros'),
-    path('about/', registro_views.about, name='site-about'),  
+    path('', registro_views.about, name='site-about'),
+    path('about/', registro_views.about, name='site-about'),
+    path('home/', registro_views.RegistroListView.as_view(template_name='monitoramento/home.html'), name='inicio-registros'),
 
+    #Usuario
     path('admin/', admin.site.urls),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('register/', user_views.register, name='register'),
 ]
 

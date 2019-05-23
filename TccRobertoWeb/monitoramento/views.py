@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import Registro
 
-class RegistroListView(ListView):
+class RegistroListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    permission_required = "auth.change_user"
     model = Registro 
     template_name = 'monitoramento/home.html'
     context_object_name = 'registros'
     #ordering = ['data_acesso']
     paginate_by = 10
+
+    #Método para busca por sala
     def get_queryset(self):
         try:
             query = self.request.GET.get('q')

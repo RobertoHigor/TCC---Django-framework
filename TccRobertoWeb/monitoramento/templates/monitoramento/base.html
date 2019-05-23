@@ -36,13 +36,12 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                     <!-- Checando se o usuário está autenticado com a função do django para exibir o botão certo-->
-                    {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="#">Criar Post</a>
-                        <a class="nav-item nav-link" href="#">Profile</a>
-                        <a class="nav-item nav-link" href="#">Logout</a>                        
+                    {% if user.is_authenticated %}                        
+                        <a class="nav-item nav-link" href="#">Acesso</a>
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>                        
                     {% else %}
-                        <a class="nav-item nav-link" href="#">Login</a>
-                        <a class="nav-item nav-link" href="#">Register</a>
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                     {% endif %}                  
                     </div>
                 </div>
