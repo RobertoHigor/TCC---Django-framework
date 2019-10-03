@@ -30,18 +30,18 @@ ENV_ROLE = get_env_variable('ENV_ROLE')
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get.env_variable('SECRET_KEY')
+SECRET_KEY = get_env_variable('SECRET_KEY')
 
 DEBUG = False
 DB_PASS = False
 
 #Ativando o DEBUG se a variável de ambiente ENV_ROLE for development
-if ENV_ROLE == 'development'
+if ENV_ROLE == 'development':
     #Pegando a senha do banco da variável de ambiente
     DB_PASS = get_env_variable('DB_PASS')
     DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
