@@ -25,6 +25,7 @@ urlpatterns = [
     path('', registro_views.about, name='site-about'),
     path('about/', registro_views.about, name='site-about'),
     path('home/', registro_views.RegistroListView.as_view(template_name='monitoramento/home.html'), name='inicio-registros'),
+    path('acesso/', registro_views.acesso, name='site-acesso'),
 
     #Usuario
     path('admin/', admin.site.urls),

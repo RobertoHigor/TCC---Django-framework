@@ -26,3 +26,6 @@ class RegistroListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
 def about(request):
      return render(request, 'monitoramento/about.html', {'title': 'About'})
+
+def acesso(request):
+    return render(request, 'monitoramento/acesso.html', {'title': 'Acesso'})

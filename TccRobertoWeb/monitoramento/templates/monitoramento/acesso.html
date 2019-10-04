@@ -1,0 +1,8 @@
+{% extends "monitoramento/base.html" %}
+{% block content %}
+    <!-- Exibe a senha de acesso do usuário logado -->
+    {% if user.is_authenticated %} 
+        <h1>Sua senha de acesso: {{request.user.acesso.senhaPorta }}</h1>
+    {% endif %}
+{% endblock content %}
+  

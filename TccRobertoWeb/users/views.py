@@ -17,6 +17,7 @@ def register(request):
             username = form.cleaned_data.get('username')
             user =  User.objects.filter(username=username).first()
             acesso = Acesso.objects.filter(usuario_id=user).first()
+            #Exibe umna notificação com a senha gerada para o usuário
             messages.success(request, f'Sua conta foi criada! Você agora pode efetuar login {acesso.senhaPorta}!')
             return redirect('login')
     else:
