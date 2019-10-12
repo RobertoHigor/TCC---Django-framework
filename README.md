@@ -1,6 +1,6 @@
 ### TCC-ROBERTO-WEB
 
-Sistema WEB desenvolvido em Django para o cadastro de Usuários e senhas de Acesso para poder abrir a porta inteligente desenvolvida com Arduino. A p�gina Web acessa a tabela de registros e mostra quais foram abertas, por quem e quando.
+Sistema WEB desenvolvido em Django para o cadastro de Usuários e senhas de Acesso para poder abrir a porta inteligente desenvolvida com Arduino. A página Web acessa a tabela de registros e mostra quais foram abertas, por quem e quando.
 
 
 # Criando ambiente virtual
@@ -53,6 +53,13 @@ A versão utilizada foi a 11.3-1
 Basta inicializar o serviço, no caso do windows, pode ser feito apertando windows + r e digitando services.msc para localizar e inicalizar o serviço postgresql-x64-11.
 O PostgresSQL provém uma interface gráfica pelo aplicativo pgAdmin4.
 
-obs: Alterar a coluna data_acesso para o valor default now()
+## Deploy do servidor
 
+Para fazer deploy do servidor, basta configurar o arquivo wsgi_windows.py caso queira hospedar no windows ou editar o arquivo wsgi.py gerado pelo Django caso queira utilizar um servidor linux.
+As variáveis de ambiente (Como as senhas e a SECRET_KEY) devem ser configuradas no computador que irá hospedar o servidor através do comando `setx` exemplo: `setx DB_PASS "Senha do banco"
 
+Além disso, é necessário também utilizar a cópia do arquivo vhosts incluida no repositório e configurar caso necessário. Deve ser posta na pasta `wamp\bin\apache\apache(versão)\conf\extra` substituindo o arquivo httpd-vhosts.conf que já se encontra nela.
+
+No arquivo vhosts é onde se configura o acesso as pastas do site, incluindo a static que é onde o Django armazena arquivos como javascript, css e mídias. É recomendado gerar novamente os arquivos static caso ocorra algum problema (Como o site ficar sem css). Isso é feito através do comando `python manage.py collectstatic` onde será gerado uma pasta geral static contendo todos os arquivos do servidor, que deve ser adicionada ao arquivo vhosts para permitir acesso a elas.
+
+Para isso também é necessário utilizar a tag `{% load static %}` para que o Django carregue automaticamente a static da pasta configurada no `settings.py` diminuindo a reescrita de código.

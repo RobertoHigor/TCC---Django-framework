@@ -9,23 +9,21 @@
         <input type="submit" class="btn btn-outline-info navbar-dark" value="Filtrar"/>
     </form>    
 
-    <table class="table table-hover">
+    <table class="table table-responsive table-hover">
     <thead class="thead-dark">
         <tr>  
-        <th scope="col">Nome</th>      
-        <th scope="col">Sobrenome</th>
-        <th scope="col">Sala Acessada</th>
-        <th scope="col">Data</th>
+        <th scope="col">Nome</th>          
+        <th scope="col">Sala</th>
+        <th scope="col">Hora</th>
         </tr>
     </thead>
 
     {% for registro in registros %}   
     <tbody>
         <tr>      
-        <th scope="row">{{registro.usuario.first_name}}</th>
-        <td>{{registro.usuario.last_name}}</td>
-        <td>{{registro.sala_acesso}}</td>
-        <td>{{registro.data_acesso}}</td>
+        <th scope="row">{{registro.usuario.first_name}} {{registro.usuario.last_name}}</th>        
+        <td>{{registro.sala_acesso}}</td>       
+        <td>{{registro.data_acesso|date:"G:i d/m/Y"}}</td>
         </tr>    
     </tbody>
     {% endfor %}

@@ -7,16 +7,16 @@
         <form method = "POST">
             {% csrf_token %}
             <fieldset class = "form-group">
-                <legend class = "border-bottom mb-4">Join Today</legend>
+                <legend class = "border-bottom mb-4">Formulário de Cadastro</legend>
                 <!-- o método as_p renderiza o formulário como um parágrafo-->
                 {{ form|crispy }}
             </fieldset>
             <div class = "form-group">
-                <button class="btn btn-outline-info" type = "submit">Sign up</button>
+                <button class="btn btn-outline-info" type = "submit">Cadastrar</button>
             </div>
         </form>
         <div class = "border-top pt-3">
-            <small class = "text-muted">Already have an account? <a class = "ml-2" href="{% url 'login' %}">Sign In</a> </small>
+            <small class = "text-muted">Já possui uma conta? <a class = "ml-2" href="{% url 'login' %}">Logar</a> </small>
         </div>
     </div>
 
