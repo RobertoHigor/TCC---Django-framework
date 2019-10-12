@@ -143,8 +143,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATIC_URL = '/static/'
+# Definindo a pasta raíz do projeto e em seguida a raíz dos arquivos static
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
 CRISPY_TEMPALTE_PACK = 'bootstrap4'
 #Para onde ir após logar
 LOGIN_REDIRECT_URL = 'site-about'
