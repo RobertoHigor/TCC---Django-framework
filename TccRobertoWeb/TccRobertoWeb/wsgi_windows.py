@@ -1,4 +1,5 @@
 import os, sys, site
+from django.core.exceptions import ImproperlyConfigured
 
 # Tratando erros de variáveis de ambiente
 def get_env_variable(var_name):
@@ -24,9 +25,9 @@ sys.path.append('C:/Users/SirLab/Roberto/tcc-roberto-web/TccRobertoWeb/users')
 # Pegando as variáveis de ambiente e enviando para o Django
 os.environ['DJANGO_SETTINGS_MODULE'] = 'TccRobertoWeb.settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'TccRobertoWeb.settings')
-os.environ['ENV_ROLE'] = get_env_variable('ENV_ROLE')
-os.environ['SECRET_KEY'] = get_env_variable('SECRET_KEY')
-os.environ['DB_PASS'] = get_env_variable('DB_PASS')
+os.environ['ENV_ROLE'] = 'INSERIR ROLE'
+os.environ['SECRET_KEY'] = 'INSERIR SECRET KEY'
+os.environ['DB_PASS'] = 'INSERIR SENHA DO BANCO DE DADOS'
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

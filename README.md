@@ -36,7 +36,9 @@ A lista de bibliotecas se encontra no arquivo `requirements.txt` e podem ser ins
 
 Primeiro é necessário criar um banco de dados com o nome `faeterj`. Já dentro do ambiente virtual, execute o comando `python manage.py makemigrations` para criar o banco de dados. 
 
-Importante: É gerado um arquivo dentro da pasta migrations do aplicativo cada vez que o makemigrations executa alguma alteração. Caso queira apagar uma alteração, é necessário apagar o arquivo antes de refazer a migration. Use com cuidado.
+Importante: É gerado um arquivo dentro da pasta migrations dentro da aplição cada vez que o makemigrations executa alguma alteração. Use com cuidado.
+
+Por padrão o Django não altera o valor padrão de uma tabela, para isso é necessário utilizar o comando `python manage.py makemigrations --empty` para gerar uma migration vazia. Pode-se então copiar o código do arquivo `__init__.py` dentro da pasta migrations e colar no arquivo que foi gerado pelo comando.
 
 Após ter criado a migração, é preciso aplica-la utilizando o comando `python manage.py migrate`. Deve-se então criar um superusuário com o comando `python manage.py createsuperuser`
 
@@ -56,7 +58,7 @@ O PostgresSQL provém uma interface gráfica pelo aplicativo pgAdmin4.
 ## Deploy do servidor
 
 Para fazer deploy do servidor, basta configurar o arquivo wsgi_windows.py caso queira hospedar no windows ou editar o arquivo wsgi.py gerado pelo Django caso queira utilizar um servidor linux.
-As variáveis de ambiente (Como as senhas e a SECRET_KEY) devem ser configuradas no computador que irá hospedar o servidor através do comando `setx` exemplo: `setx DB_PASS "Senha do banco"
+As variáveis de ambiente (Como as senhas e a SECRET_KEY) devem ser configuradas no computador que irá hospedar o servidor através do comando `setx` exemplo: `setx DB_PASS "Senha do banco". *Atualmente elas devem ser postas no arquivo wsgi_windows.py para passar para o Apache
 
 Além disso, é necessário também utilizar a cópia do arquivo vhosts incluida no repositório e configurar caso necessário. Deve ser posta na pasta `wamp\bin\apache\apache(versão)\conf\extra` substituindo o arquivo httpd-vhosts.conf que já se encontra nela.
 
