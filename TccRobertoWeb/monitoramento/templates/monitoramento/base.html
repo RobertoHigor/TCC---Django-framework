@@ -13,17 +13,18 @@
     
     <link rel="stylesheet" type="text/css" href="{% static 'monitoramento/main.css' %}">
     
+    <!-- Se a página tiver um título, colocar ele após o título base. Senão, apenas utilizar o título base-->
     {% if title %}
-        <title>Django monitoramento - {{ title }}</title>
+        <title>Monitoramento - {{ title }}</title>
     {% else %}
-        <title>Django monitoramento</title>
+        <title>Monitoramento</title>
     {% endif %}
 </head>
 <body>
     <header class="site-header">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">            
                 <div class="container">
-                <a class="navbar-brand mr-4" href="{% url 'inicio-registros' %}">Django monitoramento</a>
+                <a class="navbar-brand mr-4" href="{% url 'inicio-registros' %}">Monitoramento</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -52,7 +53,7 @@
                 </div>
             </nav>
         </header>
-    <!-- Criando um bloco que pode ser sobreescrito por quem herdar essa página -->
+    <!-- Criando um bloco chamado content que pode ser sobrescrito por quem herdar essa página -->
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8">
