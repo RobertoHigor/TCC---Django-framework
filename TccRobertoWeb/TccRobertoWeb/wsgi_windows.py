@@ -27,7 +27,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'TccRobertoWeb.settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'TccRobertoWeb.settings')
 os.environ['ENV_ROLE'] = 'INSERIR ROLE'
 os.environ['SECRET_KEY'] = 'INSERIR SECRET KEY'
-os.environ['DB_PASS'] = 'INSERIR SENHA DO BANCO DE DADOS'
+os.environ['DB_PASS'] = 'INSERIR SENHA DO BANCO'
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

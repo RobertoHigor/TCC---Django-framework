@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from .forms import UserRegisterForm
 from .models import Acesso
 from django.contrib.auth.models import User
@@ -24,3 +26,17 @@ def register(request):
             form = UserRegisterForm()
          #Enviando a variável para a página
     return render(request, 'users/register.html', {'form': form})
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user) #Importante para o usuário não precisar relogar  
+            messages.success(request, f'Sua senha foi alterada com sucesso')
+            return redirect('about')
+        else:
+            messages.error(request, f'Por favor corrija os erros abaxio')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'users/changePassword.html', {'form': form})
