@@ -43,7 +43,8 @@
                             <a class="nav-item nav-link" href="{% url 'site-acesso' %}">Ver acesso</a> 
                         {% if request.user.is_superuser %} 
                             <a class="nav-item nav-link" href="{% url 'register' %}">Registrar</a>
-                        {% endif %}       
+                        {% endif %}     
+                        <a class="nav-item nav-link" href="{% url 'changePassword' %}">Alterar Senha</a>   
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Sair</a>                 
                     {% else %}
                         <a class="nav-item nav-link" href="{% url 'login' %}">Logar</a>                        

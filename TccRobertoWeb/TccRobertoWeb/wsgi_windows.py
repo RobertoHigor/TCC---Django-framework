@@ -1,14 +1,6 @@
 import os, sys, site
 from django.core.exceptions import ImproperlyConfigured
 
-# Tratando erros de variáveis de ambiente
-def get_env_variable(var_name):
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
-
 # Adicionar o activate_this do virtualenv
 activate_this = 'C:/Users/SirLab/Roberto/tcc-roberto-web/env/Scripts/activate_this.py'
 
