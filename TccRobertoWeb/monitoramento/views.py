@@ -19,9 +19,9 @@ class RegistroListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         except:
             query = ''
         if query:
-            #Pegando o id dos usuários que possuem os caracteres digitados no nome
+            #Retornando o id dos usuários que possuem os caracteres digitados no nome
             user_list = User.objects.filter(first_name__icontains=query).values('id') 
-            #Pegando do banco os registros onde o atributo usuario está contido no user_list
+            #Retornando do banco os registros onde o atributo usuario está contido no user_list
             object_list = Registro.objects.filter(usuario__in=user_list).order_by('-data_acesso')
         else:
             object_list = Registro.objects.all().order_by('-data_acesso')

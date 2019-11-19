@@ -148,7 +148,7 @@ STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-CRISPY_TEMPALTE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 #Para onde ir após logar
 LOGIN_REDIRECT_URL = 'site-about'
 LOGIN_URL = 'login'

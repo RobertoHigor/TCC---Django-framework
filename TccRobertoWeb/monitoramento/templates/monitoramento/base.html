@@ -56,8 +56,7 @@
         </header>
     <!-- Criando um bloco chamado content que pode ser sobrescrito por quem herdar essa página -->
     <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-8">
+        
             {% if messages %}
                 {% for message in messages %}
                     <!-- Nesse caso ele vai pegar qual alerta o django enviou e utilizar a tag Bootstrap correta (sucesso, fala, etc) pois o django
@@ -68,8 +67,7 @@
                 {% endfor %}
             {% endif %}
             {% block content %}{% endblock %}
-            </div>                   
-        </div>
+            
     </main>
           
     <!-- Optional JavaScript -->

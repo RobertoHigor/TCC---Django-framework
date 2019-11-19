@@ -1,20 +1,23 @@
 {% extends "monitoramento/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-  
-    <div class = "content-section">
-        <!-- Pesquisar CRSF token. O django requere que essa tag oculta seja adicionada por segurança-->
-        <form method = "POST">
-            {% csrf_token %}
-            <fieldset class = "form-group">
-                <legend class = "border-bottom mb-4">Logar</legend>
-                <!-- o método as_p renderiza o formulário como um parágrafo-->
-                {{ form|crispy }}
-            </fieldset>
-            <div class = "form-group">
-                <button class="btn btn-outline-info" type = "submit">Logar</button>
+<div class="row">
+        <div class="col-md-8">
+            <div class = "content-section">
+                <!-- Pesquisar CRSF token. O django requere que essa tag oculta seja adicionada por segurança-->
+                <form method = "POST">
+                    {% csrf_token %}
+                    <fieldset class = "form-group">
+                        <legend class = "border-bottom mb-4">Logar</legend>
+                        <!-- o método as_p renderiza o formulário como um parágrafo-->
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class = "form-group">
+                        <button class="btn btn-outline-info" type = "submit">Logar</button>
+                    </div>
+                </form>        
             </div>
-        </form>        
+        </div>
     </div>
 
 {% endblock content %}

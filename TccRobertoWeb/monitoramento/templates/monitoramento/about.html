@@ -1,7 +1,31 @@
 {% extends "monitoramento/base.html" %}
 {% block content %}
+{% load static %} 
+    <img class="img-fluid mx-auto d-block" height="300px" width="300px" src="{% static 'monitoramento/faeterj.png' %} "alt="Logo Faeterj">
+    <h1 class="text-center">Trabalho de conclusão de curso</h1>
+    <h2 class="text-center">Sistema de controle de acesso</h2>
+    <h3 class="text-right">Roberto Higor Matos dos Anjos</h3>
 
-    <h1>Página em construção</h1>
+<div class="row mt-5">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Repositório Arduino/Python</h5>
+        <p class="card-text">Contendo a aplicação Python responsável pela comunicação do Arduino além do código do Arduino.</p>
+        <a href="https://gitlab.com/RobertoHigor/tcc-roberto" class="btn btn-primary">Gitlab</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Repositório Django</h5>
+        <p class="card-text">Contendo a aplicação WEB feita utilizando o framework Django que resultou nesta página.</p>
+        <a href="https://gitlab.com/RobertoHigor/tcc-roberto-web" class="btn btn-primary">Gitlab</a>
+      </div>
+    </div>
+  </div>
+</div>
    
 {% endblock content %}
   
