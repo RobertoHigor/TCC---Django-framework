@@ -5,7 +5,7 @@ Sistema WEB desenvolvido em Django para o cadastro de Usuários e senhas de Aces
 A página Web acessa a tabela de registros e mostra quais foram abertas, por quem e quando.
 
 A aplicação Django faz parte do servidor e permite um acesso remoto ao site de diversos dispositivos:
-![Diagrama geral do sistema](https://github.com/RobertoHigor/TCC---Django-framework/blob/master/Diagrama geral do projeto.png)
+![Diagrama geral do sistema](https://github.com/RobertoHigor/TCC---Django-framework/blob/master/Diagrama%20geral%20do%20projeto.png)
 # Criando ambiente virtual
 Basta seguir os seguintes passos:
 
@@ -33,7 +33,7 @@ No caso do **Linux**, basta executar source env/bin/activate
 # Pré-requisitos para se utilizar o Django
 
 É **necessário** a instalação das bibliotecas seguintes bibliotecas:
-* **django (2.2.10)** o Django em si
+* **django (2.2.1)** o Django em si
 * **django-crispy-forms (1.7.2)** para formulários mais bonitos
 * **psycopg2 (2.8.2)** que é o conector do PostgreSQL
 * **pytz (2019.1)** 
@@ -47,7 +47,7 @@ Instalar com o pip através do arquivo **requirements.txt**. Basta utilizar o ar
 #### Opção 2
 Instalar os pacotes manualmente com o pip
 ```python
-pip install django==2.2.10
+pip install django==2.2.1
 pip install django-crispy-forms==1.7.2
 pip install psycopg2==2.8.2
 pip install sqlparse==0.3.0
@@ -68,7 +68,7 @@ Siga os passos para criar e configurar o banco de dados.
 5. Execute a migração com o `python manage.py migrate`.
 
 O Banco de dados segue o seguinte diagrama (excluindo as tabelas do Django):
-![Diagrama da tabela de acesso, usuário e registro](https://github.com/RobertoHigor/TCC---Django-framework/blob/master/Diagrama banco de dados.png)
+![Diagrama da tabela de acesso, usuário e registro](https://github.com/RobertoHigor/TCC---Django-framework/blob/master/Diagrama%20banco%20de%20dados.png)
 
 ## Executando o Django
 
