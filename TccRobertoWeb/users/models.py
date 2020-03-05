@@ -15,4 +15,4 @@ class Acesso(models.Model):
     senhaPorta = models.IntegerField(unique=True, default = gerarAcesso)
 
     def __str__(self):
-        return f'{self.usuario_id.username} Acesso'
+        return "{0} Acesso".format(self.usuario_id.username)

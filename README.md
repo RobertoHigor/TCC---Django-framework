@@ -1,26 +1,52 @@
+
 ### TCC-ROBERTO-WEB
 
-Sistema WEB desenvolvido em Django para o cadastro de Usuários e senhas de Acesso para poder abrir a porta inteligente desenvolvida com Arduino. A página Web acessa a tabela de registros e mostra quais foram abertas, por quem e quando.
+Sistema WEB desenvolvido em Django para o cadastro de Usuários e senhas de Acesso para poder abrir a porta inteligente desenvolvida com Arduino. 
+A página Web acessa a tabela de registros e mostra quais foram abertas, por quem e quando.
 
-
+A aplicação Django faz parte do servidor e permite um acesso remoto ao site de diversos dispositivos:
+![Diagrama geral do sistema](https://github.com/RobertoHigor/TCC---Django-framework/blob/master/Diagrama%20geral%20do%20projeto.png)
 # Criando ambiente virtual
-É necessário instalar o pacote virtualenv para que seja possível criar um ambiente virtual onde será instalado as bibliotecas sem que haja conflito com as já existentes no computador.
+Basta seguir os seguintes passos:
 
-Para se instalar o virtualenv baixa digitar o comando `pip install virtualenv`
+ 1. Instalar o pacote **virtualenv** com o comando `pip install virtualenv`. O ambiente virtual irá servir para instalar as bibliotecas.
+ > Dependendo da versão, é recomendado já utilizar o `python3 -m pip install virtualenv` para garantir que irá utilizar a versão do pip associada a sua versão do python.
+ 3. Executar o virtualenv, depenendo do sistema operacional
 
-Após instalado, ele irá criar um arquivo chamado virtualenv.exe na pasta Scripts/ dentro da pasta onde estão instalado o Python, no meu caso por utilizar o Python 3.7 32bits está na pasta Python37-32
+### Windows
+Será criado um arquivo `virtualenv.exe`dentro da pasta Python(versao)/Scripts. Basta executa-lo ou adicionar na variável de ambiente **PATH**
+### Linux
+No caso do Linux, basta adicionar ao **PATH** da seguinte forma:
+1. Abrir o arquivo `/home/usuario/.bashrc` com um editor de texto.
+2. Adicionar no final a linha `export PATH="seu-diretorio:$PATH"`, substituindo `seu-diretorio`pelo caminho de instalação do virtualenv (que é mostrado após instalar com o pip).
+3. Salve o arquivo e reinicie o terminal.
 
-Para criar o ambiente virtual, deve-se executar o arquivo virtualenv.exe seguido da pasta onde será armazenado o ambiente virtual (no meu caso foi utilizado uma pasta chamada env dentro da pasta raíz do projeto)
+## Executando o ambiente virtual
+Basta digitar no cmd ou terminal o comando virtualenv.
+Para criar o ambiente virtual em uma pasta chamada **env** sem as bibliotecas já instaladas, basta utilizar o comando `virtualenv.exe env --no-site-packages`.
 
-O comando ficou `virtualenv.exe env --no-site-packages` pelo fato do arquivo virtualenv.exe já estar nas variáveis do sistema. O argumento --no-site-packages possibilita uma instalação limpa, sem adicionar os pacotes que já estão instalados no sistema.
-
-Após instalado, deve-se entrar dentro do ambiente virtual criado executando o arquivo activate dentro da pasta Scripts criadas, nesse caso o comando é `env\Scripts\Activate`. Sempre que for executar o programa, é necessário ativar o ambiente virtual. Para sair do ambiente virtual basta utilizar o comando deactivate.
+Após instalado, deve-se entrar dentro do ambiente virtual.
+No caso do **Windows**, basta executar  `env\Scripts\Activate`. 
+No caso do **Linux**, basta executar source env/bin/activate
+> Sempre que for executar o programa, é necessário ativar o ambiente virtual. Para sair do ambiente virtual basta utilizar o comando deactivate.
 
 # Pré-requisitos para se utilizar o Django
 
-É necessario a instalação das bibliotecas django (2.2.1), django-crispy-forms (1.7.2), do conector do Postgres psycopg2 (2.8.2), do pytz (2019.1) e opcionalmente do sqlparse (0.3.0)
+É **necessário** a instalação das bibliotecas seguintes bibliotecas:
+* **django (2.2.1)** o Django em si
+* **django-crispy-forms (1.7.2)** para formulários mais bonitos
+* **psycopg2 (2.8.2)** que é o conector do PostgreSQL
+* **pytz (2019.1)** 
+* **sqlparse (0.3.0)**
 
-```
+Para instalar nas versões requiridas, pode-se utilizar de 2 opções
+####  Opção 1 (Recomendado)
+Instalar com o pip através do arquivo **requirements.txt**. Basta utilizar o argumento `-r` fornecendo o nome do arquivo.
+ `python3 -m pip install -r requirements.txt`
+
+#### Opção 2
+Instalar os pacotes manualmente com o pip
+```python
 pip install django==2.2.1
 pip install django-crispy-forms==1.7.2
 pip install psycopg2==2.8.2
@@ -28,40 +54,56 @@ pip install sqlparse==0.3.0
 pip install pytz==2019.1
 ```
 
-A lista de bibliotecas se encontra no arquivo `requirements.txt` e podem ser instaladas através do comando `pip intall -r requirements.txt`
+# Instruções
 
-## Instruções
+## Criando o banco de dados
 
-# Criando o banco de dados
+Antes de tudo, esteja utilizando o ambiente virtual para poder executar as configurações do Django.
+Siga os passos para criar e configurar o banco de dados.
+ 1. É necessário criar o **banco de dados** com o nome `faeterj` no próprio postgreSQL. 
+ 2. Crie as tabelas do banco através do Django com o comando `python manage.py makemigrations`
+ 3. Execute o comando `python manage.py makemigrations --empty` para gerar uma migração vazia. 
+ 4. Copie o código do arquivo `__init__.py` e cole no arquivo gerado pelo comando anterior.
+> Por limitação do Postgres, o Django não consegue alterar o valor *default* de uma coluna, então é preciso fazer o processo manualmente. 
+5. Execute a migração com o `python manage.py migrate`.
 
-Primeiro é necessário criar um banco de dados com o nome `faeterj`. Já dentro do ambiente virtual, execute o comando `python manage.py makemigrations` para criar o banco de dados. 
+O Banco de dados segue o seguinte diagrama (excluindo as tabelas do Django):
+![Diagrama da tabela de acesso, usuário e registro](https://github.com/RobertoHigor/TCC---Django-framework/blob/master/Diagrama%20banco%20de%20dados.png)
 
-Importante: É gerado um arquivo dentro da pasta migrations dentro da aplição cada vez que o makemigrations executa alguma alteração. Use com cuidado.
+## Executando o Django
 
-Por padrão o Django não altera o valor padrão de uma tabela, para isso é necessário utilizar o comando `python manage.py makemigrations --empty` para gerar uma migration vazia. Pode-se então copiar o código do arquivo `__init__.py` dentro da pasta migrations e colar no arquivo que foi gerado pelo comando.
-
-Após ter criado a migração, é preciso aplica-la utilizando o comando `python manage.py migrate`. Deve-se então criar um superusuário com o comando `python manage.py createsuperuser`
+Basta criar o primeiro **superusuário** do sistema com o comando `python manage.py createsuperuser`, digitando o usuario, email e senha quando for requisitado.
 
 Para iniciar o servidor Django, execute python `python manage.py runserver`.
 
-Para criar um acesso para o usuário dentro do sistema, basta acessar a página de admin em localhost:8000/admin e criar um novo acesso associado ao super usuário criado anteriormente.
+# Sobre o banco de dados
 
-## Banco de dados PostgresSQL
+O banco de dados é onde será armazenado as senhas dos usuários além dos registros de entrada.
+ A criação das tabelas do banco de dados é feita pelo Django utilizando a ORM com as classes já construídas.
+ É necessário que o PosgreSQL esteja sendo executado. A versão utilizada no projeto foi a `11.3-1`
 
-O banco de dados é onde será armazenado as senhas dos usuários além dos registros de entrada. A criação do banco de dados será feita pelo Django utilizando a ORM porém é necessário que seja instalado o PostgresSQL para que seja executado o banco de dados.
-A versão utilizada foi a 11.3-1
+# Deploy do servidor
 
-# Como executar
-Basta inicializar o serviço, no caso do windows, pode ser feito apertando windows + r e digitando services.msc para localizar e inicalizar o serviço postgresql-x64-11.
-O PostgresSQL provém uma interface gráfica pelo aplicativo pgAdmin4.
+>Atualmente as variáveis de ambiente também devem ser colocadas nos arquivos wsgi.
 
-## Deploy do servidor
+Utilize as configurações do arquivo [httpd-vhosts.conf](https://github.com/RobertoHigor/TCC---Django-framework/blob/master/TccRobertoWeb/TccRobertoWeb/httpd-vhosts.conf) e altere caso seja necessário
+No caso do **linux**, o arquivo deve ser colocado no diretório `wamp\bin\apache\apache*versão]\conf\extra`, substituindo o arquivo `httpd-vhosts.conf` que já se encontra nela.
 
-Para fazer deploy do servidor, basta configurar o arquivo wsgi_windows.py caso queira hospedar no windows ou editar o arquivo wsgi.py gerado pelo Django caso queira utilizar um servidor linux.
-As variáveis de ambiente (Como as senhas e a SECRET_KEY) devem ser configuradas no computador que irá hospedar o servidor através do comando `setx` exemplo: `setx DB_PASS "Senha do banco". *Atualmente elas devem ser postas no arquivo wsgi_windows.py para passar para o Apache
+>O Arquivo **vhosts** serve para configurar o **acesso as pastas do site**, incluindo a pasta **static** geral onde se encontra os arquivos javascript, css, mídias entre outros.
+>Caso ocorra algum problema (como por exemplo, algum visual do site não funcionar, pode-se gerar novamente o static do Django com o comando `python manage.py collectstatic`
+>A pasta static está configurada no `settings.py`, sendo necessário utilizar a tag `{% load static %}` para que o Django carregue automaticamente a pasta criada anteriormente.
 
-Além disso, é necessário também utilizar a cópia do arquivo vhosts incluida no repositório e configurar caso necessário. Deve ser posta na pasta `wamp\bin\apache\apache(versão)\conf\extra` substituindo o arquivo httpd-vhosts.conf que já se encontra nela.
+Em seguida, é necessário editar os arquivos wsgi dependendo do sistema operacional:
 
-No arquivo vhosts é onde se configura o acesso as pastas do site, incluindo a static que é onde o Django armazena arquivos como javascript, css e mídias. É recomendado gerar novamente os arquivos static caso ocorra algum problema (Como o site ficar sem css). Isso é feito através do comando `python manage.py collectstatic` onde será gerado uma pasta geral static contendo todos os arquivos do servidor, que deve ser adicionada ao arquivo vhosts para permitir acesso a elas.
+### Windows 
+Basta editar o arquivo `wsgi_windows.py` e incluir as variáveis de ambiente no servidor.
 
-Para isso também é necessário utilizar a tag `{% load static %}` para que o Django carregue automaticamente a static da pasta configurada no `settings.py` diminuindo a reescrita de código.
+### Linux 
+ Basta editar o arquivo `wsgi.py` que é gerado pelo próprio Django e incluir as variaǘeis de ambiente.
+ Para incluir as variáveis no servidor, basta utilizar o comando `setx` 
+ **exemplo**: `setx DB_PASS "Senha do banco". 
+ 
+
+
+
+
