@@ -4,6 +4,8 @@
 Sistema WEB desenvolvido em Django para o cadastro de Usuários e senhas de Acesso para poder abrir a porta inteligente desenvolvida com Arduino. 
 A página Web acessa a tabela de registros e mostra quais foram abertas, por quem e quando.
 
+Para mais detalhes, segue o [texto do TCC](./TCC_Roberto_Faeterj.pdf) 
+
 A aplicação Django faz parte do servidor e permite um acesso remoto ao site de diversos dispositivos:
 ![Diagrama geral do sistema](https://github.com/RobertoHigor/TCC---Django-framework/blob/master/Diagrama%20geral%20do%20projeto.png)
 # Criando ambiente virtual
